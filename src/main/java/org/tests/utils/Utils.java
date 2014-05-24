@@ -69,7 +69,7 @@ public class Utils {
 	 * @return contain of input stream until @match occured
 	 * @throws IOException
 	 */
-	public static final StringBuffer readUntilMatch(BufferedReader r, String match) throws IOException {
+	public static StringBuffer readUntilMatch(BufferedReader r, String match) throws IOException {
 		StringBuffer sb = new StringBuffer();
 		String inputLine;
 		boolean matchFound = false;
@@ -86,7 +86,7 @@ public class Utils {
 		return sb;
 	}
 
-	public static final String readString(BufferedReader r) throws IOException {
+	public static String readString(BufferedReader r) throws IOException {
 		StringBuffer sb = new StringBuffer();
 		String inputLine;
 		while ((inputLine = r.readLine()) != null) {
@@ -98,11 +98,11 @@ public class Utils {
 		return sb.toString();
 	}
 
-	public static final String getCommaSeparatedStrings(Collection<String> list) {
+	public static String getCommaSeparatedStrings(Collection<String> list) {
 		return getXSeparatedObjects(list, ",");
 	}
 
-	public static final String getXSeparatedObjects(Collection list, String separator) {
+	public static String getXSeparatedObjects(Collection list, String separator) {
 		String result = "";
 		for (Object o : list) {
 			if (o != null) {
