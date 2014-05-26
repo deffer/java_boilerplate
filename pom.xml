@@ -19,10 +19,16 @@
 					<scanIntervalSeconds>5</scanIntervalSeconds>
 					<stopKey>foo</stopKey>
 					<stopPort>9999</stopPort>
+					<connectors>
+						<!-- work around file locking on windows -->
+						<connector implementation="org.eclipse.jetty.server.bio.SocketConnector">
+							<port>8080</port><!-- this connector defaults to 1300 for some reason -->
+						</connector>
+					</connectors>
 					<!--webDefaultXml>src/test/resources/webdefault.xml</webDefaultXml-->
-					<scanTargets>
+					<!--scanTargets>
 						<scanTarget>src/main/webapp</scanTarget>
-					</scanTargets>
+					</scanTargets-->
 				</configuration>
 			</plugin>
 			<plugin>
