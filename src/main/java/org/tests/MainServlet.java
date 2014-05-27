@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,13 @@ public class MainServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		//config.getServletContext();
+	}
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
 		List<String> lines = IOUtils.readLines(req.getInputStream());
