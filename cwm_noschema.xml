@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE XMI SYSTEM "CWM-1.1.dtd">
+
+<XMI xmlns:CWM="org.omg.CWM1.1" xmlns:CWMRDB="org.omg.CWM1.1/Relational" xmi.version="1.1">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>Crown Web</XMI.exporter>
+      <XMI.exporterVersion>2.3.1.0</XMI.exporterVersion>
+    </XMI.documentation>
+    <XMI.metamodel xmi.name="CWM" xmi.version="1.1" />
+  </XMI.header>
+  <XMI.content>
+    <CWMRDB:Catalog xmi.id="_1" name="Model#1 - v_1" visibility="public">
+      <CWM:Namespace.ownedElement>
+        <CWMRDB:Schema xmi.id="_6" name="noname" visibility="public" namespace="_1">
+          <CWM:Namespace.ownedElement>
+            <CWMRDB:Table xmi.id="_7" name="stage_trace_categories" isSystem="false" isTemporary="false" visibility="public" namespace="_6">
+              <CWM:Classifier.feature>
+                <CWMRDB:Column xmi.id="_8" name="category_id" isNullable="columnNoNulls" visibility="public" owner="_7" type="_4" precision="5" />
+                <CWMRDB:Column xmi.id="_9" name="name" isNullable="columnNullable" visibility="public" owner="_7" type="_3" length="128" />
+                <CWMRDB:Column xmi.id="_10" name="type" isNullable="columnNoNulls" visibility="public" owner="_7" type="_5" precision="3" />
+                <CWMRDB:Column xmi.id="_11" name="dss_update_time" isNullable="columnNullable" visibility="public" owner="_7" type="_2" precision="23" />
+              </CWM:Classifier.feature>
+              <CWM:Namespace.ownedElement>
+                <CWM:Description xmi.id="_12" visibility="public" language="" type="definition" body="Date and time the row was updated in the data warehouse" namespace="_7" modelElement="_11" />
+              </CWM:Namespace.ownedElement>
+            </CWMRDB:Table>
+          </CWM:Namespace.ownedElement>
+        </CWMRDB:Schema>
+      </CWM:Namespace.ownedElement>
+    </CWMRDB:Catalog>
+    <CWMRDB:SQLSimpleType xmi.id="_5" name="tinyint" visibility="public" numericPrecision="3" numericPrecisionRadix="10" typeNumber="4" />
+    <CWMRDB:SQLSimpleType xmi.id="_3" name="nvarchar" visibility="public" characterMaximumLength="128" typeNumber="12" />
+    <CWMRDB:SQLSimpleType xmi.id="_4" name="smallint" visibility="public" numericPrecision="5" numericPrecisionRadix="10" typeNumber="4" />
+    <CWMRDB:SQLSimpleType xmi.id="_2" name="datetime" visibility="public" numericPrecision="23" numericPrecisionRadix="10" typeNumber="91" />
+  </XMI.content>
+</XMI>
+
