@@ -1,6 +1,8 @@
 package org.tests.luaj;
 
 import org.luaj.vm2.*;
+import org.luaj.vm2.compiler.LuaC;
+import org.luaj.vm2.lib.*;
 import org.luaj.vm2.lib.jse.*;
 
 public class TryLuajScript {
@@ -9,7 +11,18 @@ public class TryLuajScript {
 	}
 
 	public void runTest(){
+		testAccessJavaCan();
+		//testAccessJavaCant();
+	}
+
+	public void testAccessJavaCan(){
 		Globals globals = JsePlatform.standardGlobals();
+		LuaValue chunk = getChunk(globals);
+		chunk.call();
+	}
+
+	public void testAccessJavaCant(){
+		Globals globals = initGlobals();
 		LuaValue chunk = getChunk(globals);
 		chunk.call();
 	}
@@ -18,5 +31,23 @@ public class TryLuajScript {
 		//LuaValue chunk = globals.load("print 'hello, world'");
 		LuaValue chunk = globals.loadfile("src/main/resources/coop.lua");
 		return chunk;
+	}
+
+	public Globals initGlobals(){
+		// return JsePlatform.standardGlobals();
+		Globals globals = new Globals();
+		globals.load(new JseBaseLib());
+		globals.load(new PackageLib());
+		globals.load(new Bit32Lib());
+		globals.load(new TableLib());
+		globals.load(new StringLib());
+		globals.load(new CoroutineLib());
+		globals.load(new JseMathLib());
+		globals.load(new JseIoLib());
+		globals.load(new JseOsLib());
+		//globals.load(new LuajavaLib());
+		LoadState.install(globals);
+		LuaC.install(globals);
+		return globals;
 	}
 }
