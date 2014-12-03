@@ -4,6 +4,8 @@ import org.luaj.vm2.*;
 import org.luaj.vm2.compiler.LuaC;
 import org.luaj.vm2.lib.*;
 import org.luaj.vm2.lib.jse.*;
+import org.tests.luaj.libs.randomstreams;
+
 
 public class TryLuajScript {
 	public static void main(String[] args) {
@@ -11,8 +13,10 @@ public class TryLuajScript {
 	}
 
 	public void runTest(){
-		testAccessJavaCan();
+		//testAccessJavaCan();
 		//testAccessJavaCant();
+
+		testIncludingSimpleLib();
 	}
 
 	public void testAccessJavaCan(){
@@ -24,6 +28,14 @@ public class TryLuajScript {
 	public void testAccessJavaCant(){
 		Globals globals = initGlobals();
 		LuaValue chunk = getChunk(globals);
+		chunk.call();
+	}
+
+	public void testIncludingSimpleLib(){
+		Globals globals = initGlobals();
+		//Globals globals = JsePlatform.standardGlobals();
+		globals.load(new randomstreams()); // same as calling require 'org.tests.luaj.libs.randomstreams' from lua
+		LuaValue chunk = globals.loadfile("src/main/resources/streams.lua");
 		chunk.call();
 	}
 
