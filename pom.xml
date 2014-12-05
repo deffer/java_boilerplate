@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <reactor.version>2.0.0.BUILD-SNAPSHOT</reactor.version>
+        <reactor.version>2.0.0.M1</reactor.version>
     </properties>
 
     <repositories>
@@ -121,6 +121,11 @@
 		    <version>3.0</version>
 	    </dependency>
 
+	    <dependency>
+		    <groupId>org.codehaus.groovy</groupId>
+		    <artifactId>groovy-all</artifactId>
+		    <version>[2,)</version>
+	    </dependency>
 
     </dependencies>
 

@@ -13,10 +13,10 @@ public class TryLuajScript {
 	}
 
 	public void runTest(){
-		//testAccessJavaCan();
+		testAccessJavaCan();
 		//testAccessJavaCant();
 
-		testIncludingSimpleLib();
+		//testIncludingSimpleLib();
 	}
 
 	public void testAccessJavaCan(){
@@ -41,7 +41,7 @@ public class TryLuajScript {
 
 	public LuaValue getChunk(Globals globals){
 		//LuaValue chunk = globals.load("print 'hello, world'");
-		LuaValue chunk = globals.loadfile("src/main/resources/coop.lua");
+		LuaValue chunk = globals.loadfile("src/main/resources/swing.lua");
 		return chunk;
 	}
 
