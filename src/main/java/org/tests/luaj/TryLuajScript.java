@@ -5,6 +5,7 @@ import org.luaj.vm2.compiler.LuaC;
 import org.luaj.vm2.lib.*;
 import org.luaj.vm2.lib.jse.*;
 import org.tests.luaj.libs.randomstreams;
+import org.tests.luaj.libs.world;
 
 
 public class TryLuajScript {
@@ -13,10 +14,21 @@ public class TryLuajScript {
 	}
 
 	public void runTest(){
-		testAccessJavaCan();
+		//testAccessJavaCan();
 		//testAccessJavaCant();
 
 		//testIncludingSimpleLib();
+		testHookFromLua2Java();
+	}
+
+	public void testHookFromLua2Java(){
+		Globals globals = initGlobals();
+		globals.load(new world());
+		LuaValue chunk = globals.loadfile("src/main/resources/unit.lua"); // hooks to event
+		chunk.call();
+		World.getInstance().populateWorld(); // generates event (calls listeners)
+
+		System.out.println("At 15,15 - " + World.getInstance().getContentOf(15, 15)); // see if hook worked
 	}
 
 	public void testAccessJavaCan(){
