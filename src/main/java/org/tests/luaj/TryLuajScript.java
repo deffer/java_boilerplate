@@ -40,6 +40,8 @@ public class TryLuajScript {
 	}
 
 	public void testLuajavaReferencingWithHook(){
+		// ALSO SEE globals.get("luajava").get("bindClass").call( 
+		//     LuaValue.valueOf("java.lang.System") ).invokeMethod("currentTimeMillis") );
 		final Globals globals = JsePlatform.standardGlobals();
 		final Fruit fr = new Apple();
 		LuaValue coerced = CoerceJavaToLua.coerce(fr);
