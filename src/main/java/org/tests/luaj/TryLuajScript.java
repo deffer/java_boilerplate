@@ -24,8 +24,8 @@ public class TryLuajScript {
 		//testAccessJavaCant();
 
 		//testIncludingSimpleLib();
-		testHookFromLua2Java();
-		//testLuajavaReferencing();
+		//testHookFromLua2Java();
+		testLuajavaReferencing();
 	}
 
 	public void testHookFromLua2Java(){
@@ -47,8 +47,8 @@ public class TryLuajScript {
 			System.out.print("Not a function");
 		else {
 			Fruit fr = new Apple();
-			List<Store> pass = Arrays.asList(new Store(fr), new Store(fr));
-			func.call(CoerceJavaToLua.coerce(pass));
+			LuaValue[] list = new LuaValue[]{CoerceJavaToLua.coerce(new Store(fr)), CoerceJavaToLua.coerce(new Store(fr))};
+			func.call(LuaValue.listOf(list), CoerceJavaToLua.coerce(fr));
 		}
 	}
 
