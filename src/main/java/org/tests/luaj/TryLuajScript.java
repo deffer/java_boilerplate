@@ -40,15 +40,25 @@ public class TryLuajScript {
 
 	public void testLuajavaReferencing(){
 		Globals globals = JsePlatform.standardGlobals();
+		Fruit fr = new Apple();
+		LuaValue coerced = CoerceJavaToLua.coerce(fr);
+		globals.set("injectedFruit", coerced);
+		globals.set("injectedFruitNewCoerce", CoerceJavaToLua.coerce(fr));
+
 		LuaValue chunk = globals.loadfile("src/main/resources/ref.lua");
+
 		chunk.call();
-		LuaValue func = globals.get("checkStores");
+
+		LuaValue func = globals.get("cacheFavoriteFruit");
+		func.call(CoerceJavaToLua.coerce(fr));
+
+		func = globals.get("checkStores");
 		if (!func.isfunction())
 			System.out.print("Not a function");
 		else {
-			Fruit fr = new Apple();
+
 			LuaValue[] list = new LuaValue[]{CoerceJavaToLua.coerce(new Store(fr)), CoerceJavaToLua.coerce(new Store(fr))};
-			func.call(LuaValue.listOf(list), CoerceJavaToLua.coerce(fr));
+			func.call(LuaValue.listOf(list), coerced);
 		}
 	}
 
