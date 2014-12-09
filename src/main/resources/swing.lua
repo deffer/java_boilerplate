@@ -2,7 +2,7 @@ local borderLayout = luajava.bindClass("java.awt.BorderLayout")
 local jframe = luajava.bindClass("javax.swing.JFrame")
 
 local secretObject = luajava.newInstance("org.tests.luaj.ProtectedClass")
-print(tostring(secretObject))
+print(tostring(secretObject).." of class "..tostring(type(secretObject)))
 local secretText = secretObject:getSecret()
 
 local frame = luajava.newInstance("javax.swing.JFrame", "Sample Luaj Application");

@@ -7,6 +7,8 @@ import org.luaj.vm2.lib.ZeroArgFunction;
 import org.tests.luaj.ProtectedClass;
 import org.tests.luaj.World;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -27,6 +29,17 @@ public class world extends TwoArgFunction {
 			@Override
 			public LuaValue call() {
 				return LuaValue.valueOf(World.getInstance().getG());
+			}
+		});
+
+		w.set("getAt", new TwoArgFunction() {
+			@Override
+			public LuaValue call(LuaValue arg1, LuaValue arg2) {
+				List<Integer> content = World.getInstance().getContentOf(arg1.checkint(), arg2.checkint());
+				List<LuaValue> lc = new ArrayList<>();
+				for (Integer i: content)
+					lc.add(LuaValue.valueOf(i));
+				return LuaValue.listOf(lc.toArray(new LuaValue[lc.size()]));
 			}
 		});
 

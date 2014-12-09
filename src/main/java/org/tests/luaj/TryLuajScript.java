@@ -6,6 +6,12 @@ import org.luaj.vm2.lib.*;
 import org.luaj.vm2.lib.jse.*;
 import org.tests.luaj.libs.randomstreams;
 import org.tests.luaj.libs.world;
+import org.tests.objects.Apple;
+import org.tests.objects.Fruit;
+import org.tests.objects.Store;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class TryLuajScript {
@@ -19,6 +25,7 @@ public class TryLuajScript {
 
 		//testIncludingSimpleLib();
 		testHookFromLua2Java();
+		//testLuajavaReferencing();
 	}
 
 	public void testHookFromLua2Java(){
@@ -29,6 +36,20 @@ public class TryLuajScript {
 		World.getInstance().populateWorld(); // generates event (calls listeners)
 
 		System.out.println("At 15,15 - " + World.getInstance().getContentOf(15, 15)); // see if hook worked
+	}
+
+	public void testLuajavaReferencing(){
+		Globals globals = JsePlatform.standardGlobals();
+		LuaValue chunk = globals.loadfile("src/main/resources/ref.lua");
+		chunk.call();
+		LuaValue func = globals.get("checkStores");
+		if (!func.isfunction())
+			System.out.print("Not a function");
+		else {
+			Fruit fr = new Apple();
+			List<Store> pass = Arrays.asList(new Store(fr), new Store(fr));
+			func.call(CoerceJavaToLua.coerce(pass));
+		}
 	}
 
 	public void testAccessJavaCan(){
